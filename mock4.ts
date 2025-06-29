@@ -13,6 +13,9 @@ interface ITaskOutput {
   end_time: number;
 }
 
+//
+// DATASET
+//
 const data: ITask[] = [
   {
     task_name: "one",
@@ -34,13 +37,14 @@ const data: ITask[] = [
   },
 ];
 
+//
+// EXECUTION OF CODE
+//
 const output = fcfs(data);
 console.log(output);
+//
+//
 
-function compareTask(a: ITask, b: ITask): number {
-  if (a.priority < b.priority) return -1; //prioritize lower number priorities
-  return 1;
-}
 
 function fcfs(task_list: ITask[]): ITaskOutput[] {
   // sort task by sub time (and exec time)
@@ -97,6 +101,13 @@ function sortBySubTime(taskA: ITask, taskB: ITask): number {
   // else sort by soonest sub time
   return taskA.submission_time < taskB.submission_time ? -1 : 1;
 }
+
+// COMPARISON FUNCTION FOR PRIORITY QUEUE
+function compareTask(a: ITask, b: ITask): number {
+  if (a.priority < b.priority) return -1; //prioritize lower number priorities
+  return 1;
+}
+
 
 // We know that the OS is responsible for scheduling the user’s jobs, and we can have different types of scheduling algorithms to
 //  serve different goals.Let's take a fairly simple one -- First Come First Serve (FCFS), which aims to prioritise processes that
